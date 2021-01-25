@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Youtube;
 use App\Form\YoutubeType;
+use App\Repository\YoutubeRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -15,7 +16,7 @@ class YoutubeController extends AbstractController
     /**
      * @Route("/", name="home")
      */
-    public function index(Request $request, EntityManagerInterface $em): Response
+    public function index(Request $request, EntityManagerInterface $em, YoutubeRepository $youtubeRepository): Response
     {
         $youtube = new Youtube();
 
@@ -33,8 +34,8 @@ class YoutubeController extends AbstractController
         }
         
         return $this->render('youtube/index.html.twig', [
-            'controller_name'   => 'YoutubeController',
-            'form'              => $form->createView(),
+            'form'      => $form->createView(),
+            'videos'    => $youtubeRepository->findAll()
         ]);
     }
 }

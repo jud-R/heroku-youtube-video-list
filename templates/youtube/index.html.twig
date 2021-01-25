@@ -8,6 +8,9 @@
 
 {{ form(form) }}
 
+{% for video in videos %}
+    <p> {{ video.url }} - {{ video.name }} </p>
+{% endfor %}
 
 </div>
 {% endblock %}
