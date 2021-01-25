@@ -9,7 +9,9 @@
         {% for video in videos %}
             <div class="col">
                 <div class="card shadow p-3 mb-5 bg-white rounded">
-                    <img src="{{ video.url|youtube_thumbnail }}" class="card-img-top" alt="{{ video.name }}">
+                    <a href="{{ path('video', {'id': video.id}) }}">
+                        <img src="{{ video.url|youtube_thumbnail }}" class="card-img-top" alt="{{ video.name }}">
+                    </a>
                     <div class="card-body">
                         <h5 class="card-title">{{ video.name }}</h5>
                     </div>
